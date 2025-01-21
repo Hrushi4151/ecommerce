@@ -1,4 +1,4 @@
-import FeaturedProduct from "@/models/FeaturedProduct";
+import FeaturedProduct from '../../../models/FeaturedProduct";
 import Product from "../../../models/Product";
 import dbconnect from '../../../utils/mongoose'
 
