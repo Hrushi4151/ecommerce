@@ -4,13 +4,7 @@ import { createContext, useEffect, useState } from "react";
 export const Productsdata = createContext();
 
 export const Providers = ({ children }) => {
-  const [admin, setadmin] = useState(() => {
-    if (typeof window !== "undefined") {
-      const aa = localStorage.getItem("admin");
-      return a ? JSON.parse(a) : {id:"",password:""}; // Parse or default to an empty array
-    }
-    return {id:"",password:""}; // Default value during server-side rendering
-  });
+ 
   const [data, setData] = useState([]);
   const [featured, setfeatured] = useState([]);
   const [fav, setFav] = useState(() => {
@@ -60,7 +54,7 @@ export const Providers = ({ children }) => {
   }, []);
 
   return (
-    <Productsdata.Provider value={{admin, data, categories, setData, fav, setFav,fetchProducts }}>
+    <Productsdata.Provider value={{ data, categories, setData, fav, setFav,fetchProducts }}>
       {children}
     </Productsdata.Provider>
   );
