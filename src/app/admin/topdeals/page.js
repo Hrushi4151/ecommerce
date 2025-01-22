@@ -1,8 +1,9 @@
 "use client";
 import FeaturedProducts from "@/app/components/FeaturedProducts";
 import ProductsCard from "@/app/components/ProductsCard";
+import { Productsdata } from "@/app/components/Providers";
 import TopDealsCarousel from "@/app/components/TopDeals";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Toastify from 'toastify-js'
 
 const page = () => {
@@ -93,6 +94,17 @@ const page = () => {
   useEffect(() => {
     fetchdata()
   }, []);
+
+
+useEffect(() => {
+  let admin=localStorage.getItem('admin');
+  admin=JSON.parse(admin);
+  if (admin.id=="admin@gmail.com" && admin.password=="admin") {
+    router.push('/admin/products')
+    }
+}, [])
+
+
   return (
     <>
       <div className="productspage h-[calc(100vh-2.5rem)] relative m-5 rounded-2xl flex flex-col justify-between items-center overflow-auto hide-scrollbar">

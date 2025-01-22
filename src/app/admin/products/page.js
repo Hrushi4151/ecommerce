@@ -322,7 +322,14 @@ export default function Home() {
 
   const handleOpen = () => setOpen(true);
 
-  
+ useEffect(() => {
+   let admin=localStorage.getItem('admin');
+   admin=JSON.parse(admin);
+   if (admin.id=="admin@gmail.com" && admin.password=="admin") {
+     router.push('/admin/products')
+     }
+ }, [])
+
   return (
    <>
    <AddProductPopUp open={open} setOpen={setOpen} />

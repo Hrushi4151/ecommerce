@@ -29,7 +29,7 @@ const Childrens = ({ children }) => {
     <div className="flex flex-row ">
     
           <Providers>
-      <Navbar />
+     {pathname=='/admin' ?<></>: <Navbar />}
       {showLoader ? (
        <div className='flex justify-center items-center w-[100vw] h-[100vh] '> <Loader /></div>
       ) : (

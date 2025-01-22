@@ -1,6 +1,5 @@
 
-import Topdeals from '../../../models/TopDeals';
-import Product from "../../../models/Product";
+import Topdeals from '@/models/TopDeals';
 import connectDB from '../../../utils/mongoose'
 
 
