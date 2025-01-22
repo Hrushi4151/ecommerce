@@ -3,10 +3,12 @@ import FeaturedProducts from "@/app/components/FeaturedProducts";
 import ProductsCard from "@/app/components/ProductsCard";
 import { Productsdata } from "@/app/components/Providers";
 import TopDealsCarousel from "@/app/components/TopDeals";
+import { useRouter } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import Toastify from 'toastify-js'
 
 const page = () => {
+   const router = useRouter();
   const [data, setdata] = useState([]);
   const [selectedItems, setselectedItems] = useState(data);
   const handleCheckboxChange = (event) => {

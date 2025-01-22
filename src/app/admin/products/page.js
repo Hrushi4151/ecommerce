@@ -101,9 +101,11 @@ import ProductsCard from "@/app/components/ProductsCard";
 import { Productsdata } from "@/app/components/Providers";
 import Toastify from 'toastify-js'
 import "toastify-js/src/toastify.css"
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
+   const router = useRouter(); 
     const { data,categories,setData,fetchProducts} = useContext(Productsdata);
 
   const [filteredData, setFilteredData] = useState(data);
