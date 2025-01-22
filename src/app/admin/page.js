@@ -54,8 +54,8 @@ const handlelogin=()=>{
 useEffect(() => {
   let admin=localStorage.getItem('admin');
   admin=JSON.parse(admin);
-  if(admin){if (admin.id=="admin@gmail.com" && admin.password=="admin") {
-    router.push('/admin/products')
+  if(admin){if (admin.id!="admin@gmail.com" && admin.password!="admin") {
+    router.push('/admin')
     }}
 }, [])
 
