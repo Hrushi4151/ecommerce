@@ -332,9 +332,9 @@ const TopDealsCarousel = () => {
                 >
                     {dividedArrays.map((slide, index) => (
                         <div key={index} className="w-full flex-shrink-0">
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-items-center">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start justify-items-center w-full">
                                 {slide.map((val) => (
-                                    <div key={val._id} className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                                    <div key={val._id} className="relative rounded-lg border border-gray-200 bg-white p-6 shadow-sm w-full">
                                         <Link href={`/products/${val._id}`}>
                                             {/* Discount Label */}
                                             <div className="bg-red-500 text-white text-lg uppercase px-2 py-1 absolute top-2 left-2 rounded">

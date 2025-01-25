@@ -329,7 +329,9 @@ useEffect(() => {
   admin=JSON.parse(admin);
   if(admin){if (admin.id!="admin@gmail.com" && admin.password!="admin") {
     router.push('/admin')
-    }}
+    }}else{
+      router.push('/admin')
+    }
 }, [])
 
   return (
