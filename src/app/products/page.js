@@ -79,7 +79,7 @@ export default function Home() {
 
   return (
    <>
-   <div className="productspage h-[calc(100vh-2.5rem)] m-0 md:m-5  rounded-2xl flex flex-col justify-between items-center overflow-auto hide-scrollbar">
+   <div className="productspage h-[calc(100vh-2.5rem)] mt-3 m-0 md:m-5  rounded-2xl flex flex-col justify-between items-center overflow-auto hide-scrollbar">
     <div className="w-fit h-fit sticky top-0 z-10 hidden md:block">
       <div className="flex  justify-center items-center gap-2 rounded-full  dropshadowbtn bg-glass  px-3 py-2 ">
   
@@ -103,23 +103,25 @@ export default function Home() {
     </div>
 
 <div className="w-full h-fit sticky top-0 z-10 bg-white shadow-lg md:hidden">
-  <div className="flex justify-between items-center p-4">
-    {/* Left Side: Logo */}
-    <div className="flex items-center">
-      <img src="/logo.png" alt="Logo" className="h-14 w-14 p-0" /> {/* Adjust logo size as needed */}
-    </div>
+ {
+  // <div className="flex justify-between items-center p-4">
+  //   {/* Left Side: Logo */}
+  //   <div className="flex items-center">
+  //     <img src="/logo.png" alt="Logo" className="h-14 w-14 p-0" /> {/* Adjust logo size as needed */}
+  //   </div>
 
-    {/* Right Side: Search Bar */}
-    <div className="flex justify-center items-center bg-white rounded-full pl-3 p-1 overflow-hidden">
-      <input
-        className="w-32 sm:w-40 text-xl bg-white rounded-md outline-none"
-        onChange={(e) => setsearchval(e.target.value)}
-        value={searchval}
-        placeholder="Search..."
-      />
-      <FaSearch className="w-10 h-10 p-2 text-xl text-white rounded-full bg-pink-500" />
-    </div>
-  </div>
+  //   {/* Right Side: Search Bar */}
+  //   <div className="flex justify-center items-center bg-white rounded-full pl-3 p-1 overflow-hidden">
+  //     <input
+  //       className="w-32 sm:w-40 text-xl bg-white rounded-md outline-none"
+  //       onChange={(e) => setsearchval(e.target.value)}
+  //       value={searchval}
+  //       placeholder="Search..."
+  //     />
+  //     <FaSearch className="w-10 h-10 p-2 text-xl text-white rounded-full bg-pink-500" />
+  //   </div>
+  // </div>
+  }
 
   {/* Categories */}
   <div className="flex justify-between items-center gap-2 rounded-full drop-shadow-btn bg-glass  flex-row overflow-auto w-full">

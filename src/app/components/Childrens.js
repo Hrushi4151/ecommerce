@@ -34,7 +34,7 @@ const Childrens = ({ children }) => {
        <div className='flex justify-center items-center w-[100vw] h-[100vh] '> <Loader /></div>
       ) : (
        
-        <main className="w-full md:w-[80vw] h-full">{children}
+        <main className="w-full md:w-[80vw] h-full pt-20 md:pt-0">{children}
 
         </main>
       )}

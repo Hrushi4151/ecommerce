@@ -45,7 +45,7 @@ mix-blend-mode: multiply;
 .dropshadowbtn{
   filter:drop-shadow(rgba(0, 0, 0, 0.445) 1px 1px 5px);
   span{
-    color:white;
+    color:rgb(40, 35, 35);
   }
 }
 

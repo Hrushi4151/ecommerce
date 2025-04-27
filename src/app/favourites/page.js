@@ -1,337 +1,379 @@
-// 'use client'
-// import Link from 'next/link'
-// import React, { useContext, useEffect } from 'react'
-// import { AiFillHeart } from 'react-icons/ai'
-// import { Productsdata } from '../components/Providers';
-
-// const page = () => {
-  
-//   const {setFav,fav} = useContext(Productsdata);
-//   const handleFav = (item) => {
-//     let updatedFav;
-  
-//     // Check if the object (by its id) already exists in the favorites
-//     if (fav.some((favItem) => favItem._id === item._id)) {
-//       // Remove the object if it exists
-//       updatedFav = fav.filter((favItem) => favItem._id !== item._id);
-//     } else {
-//       // Add the object if it doesn't exist
-//       updatedFav = [...fav, item];
-//     }
-  
-//     setFav(updatedFav); // Update state
-//     localStorage.setItem("fav", JSON.stringify(updatedFav)); // Store the updated array in localStorage
-//     console.log("Updated Favorites:", updatedFav);
-//   };
-
-//   useEffect(() => {
-//     const f = localStorage.getItem('fav');
-//     if (fav) {
-//       setFav(JSON.parse(f));
-//     }else {
-//       setFav([]);
-//     }
-//   }, [])
-
-
-//   return (
-//     <>
-//    <section class="dropshadowbtn h-[calc(100vh-2.5rem)] bg-gray-100 m-5 rounded-xl overflow-auto hide-scrollbar pt-5">
-//    <div class="mx-auto max-w-screen-xl px-4 ">
-//     <h2 class="text-xl font-semibold text-pink-600  sm:text-2xl"><AiFillHeart className=' inline-block'/> Favourites</h2>
-
-//     <div class="mt-6  md:gap-6 flex items-start">
-//       <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-//         <div class="space-y-6">
-//           {Array.isArray(fav) && fav.map((val)=>((
-//             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm text-gray-700  dropshadowbtn md:p-6">
-//             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-//               <a href="#" class="shrink-0 md:order-1">
-//                 <img class="h-20 w-20" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-//               </a>
-
-//               <label for="counter-input" class="sr-only">Choose quantity:</label>
-//               <div class="flex items-center justify-between md:order-3 md:justify-end">
-//                 <div class="flex items-center">
-//                   <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100  ">
-//                     <svg class="h-2.5 w-2.5 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
-//                     </svg>
-//                   </button>
-//                   <input type="text" id="counter-input" data-input-counter class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 " placeholder="" value="2" required />
-//                   <button type="button" id="increment-button" data-input-counter-increment="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100  ">
-//                     <svg class="h-2.5 w-2.5 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-//                     </svg>
-//                   </button>
-//                 </div>
-//                 <div class="text-end md:order-4 md:w-32">
-//                   <p class="text-base font-bold text-gray-900 ">Rs.{val.dprice}</p>
-//                 </div>
-//               </div>
-
-//               <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-//                 <a href="#" class="text-base font-medium text-gray-900 hover:underline ">{val.name}</a>
-
-//                 <div class="flex items-center gap-4">
-//                   <button 
-//                   onClick={()=>handleFav(val)}
-//                   type="button" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline ">
-//                     <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-//                     </svg>
-//                     Remove
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//           )))
-//           }
-//         </div>
-        
-//       </div>
-
-
-//     </div>
-//   </div>
-// </section>
-//     </>
-//   )
-// }
-
-// export default page
-
-
-
-
 'use client'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
-import { AiFillHeart } from 'react-icons/ai'
-import { Productsdata } from '../components/Providers';
+import { AiFillHeart, AiOutlineShoppingCart } from 'react-icons/ai'
+import { Productsdata } from '../components/Providers'
+import { razorpayConfig } from '../config/razorpay'
+import Script from 'next/script'
+import AuthModal from '../components/AuthModal'
 
-// const page = () => {
-  
-//   const {setFav,fav} = useContext(Productsdata);
-//   const handleFav = (item) => {
-//     let updatedFav;
-  
-//     // Check if the object (by its id) already exists in the favorites
-//     if (fav.some((favItem) => favItem._id === item._id)) {
-//       // Remove the object if it exists
-//       updatedFav = fav.filter((favItem) => favItem._id !== item._id);
-//     } else {
-//       // Add the object if it doesn't exist
-//       updatedFav = [...fav, item];
-//     }
-  
-//     setFav(updatedFav); // Update state
-//     localStorage.setItem("fav", JSON.stringify(updatedFav)); // Store the updated array in localStorage
-//     console.log("Updated Favorites:", updatedFav);
-//   };
+const FavoritesPage = () => {
+  const { setFav, fav } = useContext(Productsdata)
+  const [selectedItems, setSelectedItems] = useState([])
+  const [total, setTotal] = useState(0)
+  const [showAddressModal, setShowAddressModal] = useState(false)
+  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [userDetails, setUserDetails] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    state: '',
+    pincode: ''
+  })
 
-//   useEffect(() => {
-//     const f = localStorage.getItem('fav');
-//     if (fav) {
-//       setFav(JSON.parse(f));
-//     }else {
-//       setFav([]);
-//     }
-//   }, [])
-
-
-//   return (
-//     <>
-//    <section class="dropshadowbtn h-[calc(100vh-2.5rem)] bg-gray-100 m-5 rounded-xl overflow-auto hide-scrollbar pt-5">
-//    <div class="mx-auto max-w-screen-xl px-4 ">
-//     <h2 class="text-xl font-semibold text-pink-600  sm:text-2xl"><AiFillHeart className=' inline-block'/> Favourites</h2>
-
-//     <div class="mt-6  md:gap-6 flex items-start">
-//       <div class="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
-//         <div class="space-y-6">
-//           {Array.isArray(fav) && fav.map((val)=>((
-//             <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm text-gray-700  dropshadowbtn md:p-6">
-//             <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-//               <a href="#" class="shrink-0 md:order-1">
-//                 <img class="h-20 w-20" src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="imac image" />
-//               </a>
-
-//               <label for="counter-input" class="sr-only">Choose quantity:</label>
-//               <div class="flex items-center justify-between md:order-3 md:justify-end">
-//                 <div class="flex items-center">
-//                   <button type="button" id="decrement-button" data-input-counter-decrement="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100  ">
-//                     <svg class="h-2.5 w-2.5 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
-//                     </svg>
-//                   </button>
-//                   <input type="text" id="counter-input" data-input-counter class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 " placeholder="" value="2" required />
-//                   <button type="button" id="increment-button" data-input-counter-increment="counter-input" class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100  ">
-//                     <svg class="h-2.5 w-2.5 text-gray-900 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-//                     </svg>
-//                   </button>
-//                 </div>
-//                 <div class="text-end md:order-4 md:w-32">
-//                   <p class="text-base font-bold text-gray-900 ">Rs.{val.dprice}</p>
-//                 </div>
-//               </div>
-
-//               <div class="w-full min-w-0 flex-1 space-y-4 md:order-2 md:max-w-md">
-//                 <a href="#" class="text-base font-medium text-gray-900 hover:underline ">{val.name}</a>
-
-//                 <div class="flex items-center gap-4">
-//                   <button 
-//                   onClick={()=>handleFav(val)}
-//                   type="button" class="inline-flex items-center text-sm font-medium text-red-600 hover:underline ">
-//                     <svg class="me-1.5 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-//                       <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-//                     </svg>
-//                     Remove
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//           )))
-//           }
-//         </div>
-        
-//       </div>
-
-
-//     </div>
-//   </div>
-// </section>
-//     </>
-//   )
-// }
-
-// export default page
-
-const Cart = ({ handleIncrement, handleDecrement, handleRemove }) => {
-  // Calculate total price
-  const {setFav,fav} = useContext(Productsdata);
-  const [total, settotal] = useState(0)
+  useEffect(() => {
+    // Check if user is authenticated
+    const token = localStorage.getItem('userToken')
+    const userData = localStorage.getItem('userData')
+    if (token && userData) {
+      setIsAuthenticated(true)
+      const user = JSON.parse(userData)
+      setUserDetails(prev => ({
+        ...prev,
+        name: user.name,
+        email: user.email
+      }))
+    }
+  }, [])
 
   const handleFav = (item) => {
-        let updatedFav;
-      
-        // Check if the object (by its id) already exists in the favorites
-        if (fav.some((favItem) => favItem._id === item._id)) {
-          // Remove the object if it exists
-          updatedFav = fav.filter((favItem) => favItem._id !== item._id);
-        } else {
-          // Add the object if it doesn't exist
-          updatedFav = [...fav, item];
-        }
-      
-        setFav(updatedFav); // Update state
-        localStorage.setItem("fav", JSON.stringify(updatedFav)); // Store the updated array in localStorage
-        console.log("Updated Favorites:", updatedFav);
-      };
+    let updatedFav = fav.filter((favItem) => favItem._id !== item._id)
+    setFav(updatedFav)
+    localStorage.setItem("fav", JSON.stringify(updatedFav))
+    setSelectedItems(prev => prev.filter(id => id !== item._id))
+  }
+
+  const handleSelect = (item) => {
+    setSelectedItems(prev => {
+      if (prev.includes(item._id)) {
+        return prev.filter(id => id !== item._id)
+      }
+      return [...prev, item._id]
+    })
+  }
+
+  const calculateTotal = () => {
+    const selectedProducts = fav.filter(item => selectedItems.includes(item._id))
+    return selectedProducts.reduce((sum, item) => sum + Number(item.dprice), 0)
+  }
     
       useEffect(() => {
-        const f = localStorage.getItem('fav');
-        if (fav) {
-          setFav(JSON.parse(f));
-          let a=0;
-          JSON.parse(f).map((element) => {
-            a += Number(element.dprice); // Convert `element.dprice` to a number if necessary
-          });
-          settotal(a);
-        }else {
-          setFav([]);
+    const f = localStorage.getItem('fav')
+    if (f) {
+      setFav(JSON.parse(f))
+    } else {
+      setFav([])
         }
       }, [])
 
+  useEffect(() => {
+    setTotal(calculateTotal())
+  }, [selectedItems])
+
+  const handleUserDetailsChange = (e) => {
+    const { name, value } = e.target
+    setUserDetails(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const validateForm = () => {
+    const requiredFields = ['name', 'email', 'phone', 'address', 'city', 'state', 'pincode']
+    for (const field of requiredFields) {
+      if (!userDetails[field]) {
+        alert(`Please fill in your ${field}`)
+        return false
+      }
+    }
+    if (!/\S+@\S+\.\S+/.test(userDetails.email)) {
+      alert('Please enter a valid email address')
+      return false
+    }
+    if (!/^\d{10}$/.test(userDetails.phone)) {
+      alert('Please enter a valid 10-digit phone number')
+      return false
+    }
+    if (!/^\d{6}$/.test(userDetails.pincode)) {
+      alert('Please enter a valid 6-digit pincode')
+      return false
+    }
+    return true
+  }
+
+  const handleProceedToPayment = () => {
+    if (!isAuthenticated) {
+      setShowAuthModal(true)
+      return
+    }
+    setShowAddressModal(true)
+  }
+
+  const handleAuthSuccess = (data) => {
+    setIsAuthenticated(true)
+    setUserDetails(prev => ({
+      ...prev,
+      name: data.user.name,
+      email: data.user.email
+    }))
+    setShowAddressModal(true)
+  }
+
+  const initializeRazorpay = async () => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const res = await loadRazorpay()
+    if (!res) {
+      alert('Razorpay SDK failed to load')
+      return
+    }
+
+    const options = {
+      key: razorpayConfig.key_id,
+      amount: total * 100,
+      currency: razorpayConfig.currency,
+      name: razorpayConfig.name,
+      description: razorpayConfig.description,
+      handler: function (response) {
+        alert('Payment successful! Payment ID: ' + response.razorpay_payment_id)
+        // Here you can add API call to your backend to verify payment and update order status
+        // Also save the order details including userDetails and selectedItems
+      },
+      prefill: {
+        name: userDetails.name,
+        email: userDetails.email,
+        contact: userDetails.phone,
+      },
+      theme: {
+        color: '#F472B6',
+      },
+    }
+
+    const paymentObject = new window.Razorpay(options)
+    paymentObject.open()
+  }
+
+  const loadRazorpay = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement('script')
+      script.src = 'https://checkout.razorpay.com/v1/checkout.js'
+      script.onload = () => {
+        resolve(true)
+      }
+      script.onerror = () => {
+        resolve(false)
+      }
+      document.body.appendChild(script)
+    })
+  }
+
   return (
-    <section className="bg-gray-100 py-10">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl font-semibold text-pink-600 mb-6">
-          Your Shopping Cart
+    <>
+      <Script
+        src="https://checkout.razorpay.com/v1/checkout.js"
+        strategy="lazyOnload"
+      />
+      <section className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-2xl font-semibold text-pink-600">
+              <AiFillHeart className="inline-block mr-2" /> Favourites
         </h2>
-
-        {fav.length > 0 ? (
-          <>
-            <div className="space-y-6">
-              {fav.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center justify-between bg-white shadow rounded-lg p-4 flex-col md:flex-row"
+            {selectedItems.length > 0 && (
+              <div className="flex items-center gap-4">
+                <p className="text-lg font-medium">
+                  Total: ₹{total}
+                </p>
+                <button
+                  onClick={handleProceedToPayment}
+                  className="bg-pink-600 text-white px-6 py-2 rounded-lg hover:bg-pink-700 transition-colors"
                 >
-                  {/* Product Image */}
-                  <div className="flex items-center space-x-4">
-                    <img
-                      className="h-20 w-20 rounded-md object-cover"
-                      src={item.images[0]}
-                      alt={item.name}
-                    />
-                    <div>
-                      <h3 className="text-lg font-medium text-gray-900">
-                        {item.name}
-                      </h3>
-                      <p className="text-sm text-gray-500">Price: Rs.{item.dprice}</p>
+                  Proceed to Pay
+                </button>
                     </div>
+            )}
                   </div>
 
-                  {/* Quantity Controls */}
-                  <div className='flex flex-row gap-4'>
-                  <div className="flex items-center space-x-2 ">
-                    <button
-                      onClick={() => handleDecrement(item)}
-                      className="h-8 w-8 flex items-center justify-center border rounded-md bg-gray-100 hover:bg-gray-200"
-                    >
-                      -
-                    </button>
-                    <span className="w-8 text-center">{1}</span>
-                    <button
-                      onClick={() => handleIncrement(item)}
-                      className="h-8 w-8 flex items-center justify-center border rounded-md bg-gray-100 hover:bg-gray-200"
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  {/* Total and Remove Button */}
-                  <div className="flex justify-center flex-col ">
-                    <p className="text-lg font-bold text-gray-900">
-                      Rs.{item.dprice * 1}
-                    </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array.isArray(fav) && fav.map((item) => (
+              <div key={item._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                <div className="relative">
+                  <img
+                    src={item.images[0] || "https://via.placeholder.com/300"}
+                    alt={item.name}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute top-2 right-2">
                     <button
                       onClick={() => handleFav(item)}
-                      className="text-sm text-red-600 hover:underline"
+                      className="p-2 bg-white rounded-full shadow-md hover:bg-red-50"
                     >
-                      Remove
+                      <AiFillHeart className="text-red-500 text-xl" />
                     </button>
+                  </div>
+                  </div>
+
+                <div className="p-4">
+                  <h3 className="text-lg font-medium text-gray-900 mb-2">
+                    {item.name}
+                  </h3>
+                  <div className="flex items-center justify-between mb-4">
+                    <p className="text-xl font-bold text-pink-600">
+                      ₹{item.dprice}
+                    </p>
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={selectedItems.includes(item._id)}
+                        onChange={() => handleSelect(item)}
+                        className="form-checkbox h-5 w-5 text-pink-600 rounded border-gray-300 focus:ring-pink-500"
+                      />
+                      <span className="ml-2 text-sm text-gray-600">
+                        Select to buy
+                      </span>
+                    </label>
                   </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* Total and Checkout */}
-            <div className="mt-6 bg-white p-4 rounded-lg shadow">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-semibold">Total:</h3>
-                <p className="text-xl font-bold text-gray-900">
-                  Rs.{total}
-                </p>
+          {fav.length === 0 && (
+            <div className="text-center py-12">
+              <AiOutlineShoppingCart className="mx-auto text-6xl text-gray-400 mb-4" />
+              <p className="text-xl text-gray-600">Your favorites list is empty</p>
+              <Link href="/" className="text-pink-600 hover:text-pink-700 mt-2 inline-block">
+                Continue Shopping
+              </Link>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Auth Modal */}
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={handleAuthSuccess}
+      />
+
+      {/* Address Modal */}
+      {showAddressModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <h3 className="text-xl font-semibold mb-4">Enter Delivery Details</h3>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Full Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={userDetails.name}
+                  onChange={handleUserDetailsChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                  required
+                />
               </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={userDetails.email}
+                  onChange={handleUserDetailsChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={userDetails.phone}
+                  onChange={handleUserDetailsChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                  required
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Address</label>
+                <textarea
+                  name="address"
+                  value={userDetails.address}
+                  onChange={handleUserDetailsChange}
+                  rows="3"
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                  required
+                ></textarea>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">City</label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={userDetails.city}
+                    onChange={handleUserDetailsChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">State</label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={userDetails.state}
+                    onChange={handleUserDetailsChange}
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Pincode</label>
+                <input
+                  type="text"
+                  name="pincode"
+                  value={userDetails.pincode}
+                  onChange={handleUserDetailsChange}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-pink-500 focus:ring-pink-500"
+                  required
+                />
+              </div>
+              <div className="flex justify-end space-x-4 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowAddressModal(false)}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md"
+                >
+                  Cancel
+                </button>
               <button
-                className="mt-4 w-full bg-pink-600 text-white py-2 rounded-md text-lg hover:bg-pink-700"
-                onClick={() => alert("Proceed to Checkout")}
-              >
-                Checkout
+                  type="button"
+                  onClick={() => {
+                    if (validateForm()) {
+                      setShowAddressModal(false)
+                      initializeRazorpay()
+                    }
+                  }}
+                  className="px-4 py-2 text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 rounded-md"
+                >
+                  Proceed to Payment
               </button>
             </div>
-          </>
-        ) : (
-          <p className="text-gray-500 text-center">Your cart is empty.</p>
-        )}
-      </div>
-    </section>
-  );
-};
+            </form>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
 
-export default Cart;
+export default FavoritesPage

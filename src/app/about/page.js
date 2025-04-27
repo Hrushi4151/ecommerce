@@ -1,75 +1,266 @@
+'use client'
 import React from 'react'
-import { FaAddressBook } from 'react-icons/fa'
-import { MdCall, MdEmail, MdMapsHomeWork } from 'react-icons/md'
+import { FaShippingFast, FaHeadset, FaShieldAlt, FaRegCreditCard } from 'react-icons/fa'
+import { motion } from 'framer-motion'
 
-const about = () => {
+const AboutPage = () => {
+  const features = [
+    {
+      icon: <FaShippingFast className="w-8 h-8" />,
+      title: 'Fast Delivery',
+      description: 'Get your products delivered quickly and efficiently across India'
+    },
+    {
+      icon: <FaHeadset className="w-8 h-8" />,
+      title: '24/7 Support',
+      description: 'Our customer service team is available round the clock to help you'
+    },
+    {
+      icon: <FaShieldAlt className="w-8 h-8" />,
+      title: 'Secure Shopping',
+      description: 'Your transactions are protected with advanced security measures'
+    },
+    {
+      icon: <FaRegCreditCard className="w-8 h-8" />,
+      title: 'Easy Payments',
+      description: 'Multiple payment options for your convenience'
+    }
+  ]
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.8 } }
+  }
+
+  const slideInLeft = {
+    hidden: { x: -50, opacity: 0 },
+    visible: { x: 0, opacity: 1 }
+  }
+
+  const slideInRight = {
+    hidden: { x: 50, opacity: 0 },
+    visible: { x: 0, opacity: 1 }
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
+  }
+
   return (
-    <>
-    
-     <div className="dropshadowbtn h-[calc(100vh-2.5rem)] bg-gray-100 m-5 rounded-xl   justify-center  flex flex-col lg:flex-row items-center lg:items-start px-6 py-12 text-gray-800">
-      
-      {/* Image Section */}
-      <div className="w-full lg:w-1/2 lg:pr-8 mb-8 lg:mb-0">
-        <img 
-          src="/s2.png" 
-          alt="About Us" 
-          className="w-full h-full object-cover rounded-lg shadow-lg"
-        />
+    <div className="m-5">
+      <motion.div 
+        initial="hidden"
+        animate="visible"
+        className="dropshadowbtn h-[calc(100vh-2.5rem)] bg-gray-100 rounded-xl overflow-auto hide-scrollbar"
+      >
+        {/* Hero Section */}
+        <motion.section 
+          className="relative bg-gradient-to-r from-pink-600 to-purple-600 text-white py-20 rounded-t-xl"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-3xl mx-auto text-center"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <motion.h1 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Welcome to Our Store
+              </motion.h1>
+              <motion.p 
+                className="text-lg md:text-xl opacity-90"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+              >
+                Your one-stop destination for quality products and exceptional shopping experience
+              </motion.p>
+            </motion.div>
       </div>
-      
-      {/* Content Section */}
-      <div className="w-full lg:w-1/2 h-full overflow-auto hide-scrollbar">
-        
-        {/* Introduction Section */}
-        <section className="text-left max-w-lg mb-12">
-          <h1 className="text-4xl font-bold mb-4 text-orange-500">About Aao Sai Electronics</h1>
-          <p className="text-lg leading-relaxed text-gray-600">
-            Welcome to <span className="font-semibold text-orange-500 ">Digital Village</span>, your trusted local destination for quality electronics! At AAo Sai Electronics, we are dedicated to offering the latest technology with a commitment to personalized service. Every visit to our store is designed to provide you with the finest electronics and expert advice.
-          </p>
-        </section>
+          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-gray-100"></div>
+        </motion.section>
 
         {/* Mission Section */}
-        <section className="bg-pink-100 shadow-lg rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-3 text-pink-500">Our Mission</h2>
-          <p className="text-gray-700 leading-relaxed">
-            Our mission is to provide top-quality electronics and services that make your life easier and more enjoyable. We prioritize quality, expertise, and customer satisfaction in everything we do.
-          </p>
-        </section>
+        <motion.section 
+          className="py-16"
+          variants={containerVariants}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-3xl mx-auto text-center"
+              variants={slideInLeft}
+            >
+              <motion.h2 
+                className="text-3xl font-bold mb-6 text-gray-800"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Our Mission
+              </motion.h2>
+              <motion.p 
+                className="text-lg text-gray-600 leading-relaxed"
+                variants={itemVariants}
+              >
+                We strive to provide our customers with the best shopping experience possible. 
+                Our commitment to quality, affordability, and customer satisfaction drives 
+                everything we do. We carefully curate our product selection to ensure you 
+                get the best value for your money.
+              </motion.p>
+            </motion.div>
+          </div>
+        </motion.section>
 
-        {/* Values Section */}
-        <section className="bg-pink-100 shadow-lg rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-3 text-pink-500">Our Values</h2>
-          <ul className="list-disc list-inside text-gray-700 space-y-2">
-            <li><strong>Quality:</strong> Only the best, most reliable products for our customers.</li>
-            <li><strong>Integrity:</strong> Honest and transparent service with every interaction.</li>
-            <li><strong>Community:</strong> We are proud to support our local community.</li>
-          </ul>
-        </section>
+        {/* Features Grid */}
+        <motion.section 
+          className="py-16 bg-white/50"
+          variants={containerVariants}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+              variants={containerVariants}
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className="p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  variants={itemVariants}
+                  whileHover={{ 
+                    scale: 1.05,
+                    transition: { type: "spring", stiffness: 300 }
+                  }}
+                >
+                  <motion.div 
+                    className="text-pink-600 mb-4"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.6 }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600">{feature.description}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.section>
 
-        {/* History Section */}
-        <section className="bg-pink-100 shadow-lg rounded-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-3 text-pink-500">Our History</h2>
-          <p className="text-gray-700 leading-relaxed">
-            Since our founding, AAo Sai Electronics has grown from a small shop to a trusted name in the community. Our loyal customers and commitment to quality have been our driving forces.
-          </p>
-        </section>
+        {/* Why Choose Us */}
+        <motion.section 
+          className="py-16 bg-gray-50/50"
+          variants={containerVariants}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-3xl mx-auto"
+              variants={slideInRight}
+            >
+              <motion.h2 
+                className="text-3xl font-bold mb-8 text-center text-gray-800"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Why Choose Us?
+              </motion.h2>
+              <motion.div 
+                className="space-y-6"
+                variants={containerVariants}
+              >
+                {[
+                  {
+                    title: "Quality Products",
+                    description: "We partner with trusted brands and suppliers to ensure every product meets our high standards of quality."
+                  },
+                  {
+                    title: "Customer First",
+                    description: "Your satisfaction is our priority. We offer hassle-free returns and responsive customer support."
+                  },
+                  {
+                    title: "Best Prices",
+                    description: "We regularly compare prices to ensure you get the best deals without compromising on quality."
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    className="p-6 bg-white rounded-lg shadow-md"
+                    variants={itemVariants}
+                    whileHover={{ 
+                      scale: 1.02,
+                      transition: { type: "spring", stiffness: 300 }
+                    }}
+                  >
+                    <h3 className="text-xl font-semibold mb-2 text-gray-800">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {item.description}
+                    </p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.section>
 
-        {/* Contact Information Section */}
-        <section className="bg-pink-100 shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-semibold mb-3 text-pink-500">Get In Touch</h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            Need help? We’re here to assist! Visit us or get in touch using the details below.
-          </p>
-          <p className="text-gray-700">
-           <MdMapsHomeWork className='inline-block' /> <strong> Address:</strong> 123 Main Street, YourCity<br />
-            <MdCall className=' inline-block'/><strong> Phone:</strong> (123) 456-7890<br />
-            <MdEmail className=' inline-block' /><strong> Email:</strong> contact@aaosaielectronics.com
-          </p>
-        </section>
+        {/* Contact Section */}
+        <motion.section 
+          className="py-16 bg-white/50 rounded-b-xl"
+          variants={containerVariants}
+        >
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="max-w-3xl mx-auto text-center"
+              variants={slideInLeft}
+            >
+              <motion.h2 
+                className="text-3xl font-bold mb-6 text-gray-800"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                Get in Touch
+              </motion.h2>
+              <motion.p 
+                className="text-lg text-gray-600 mb-8"
+                variants={itemVariants}
+              >
+                Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll 
+                respond as soon as possible.
+              </motion.p>
+              <motion.div 
+                className="space-y-4"
+                variants={containerVariants}
+              >
+                {[
+                  { label: "Email", value: "support@yourstore.com" },
+                  { label: "Phone", value: "+91 1234567890" },
+                  { label: "Hours", value: "Monday - Saturday, 9:00 AM - 6:00 PM" }
+                ].map((item, index) => (
+                  <motion.p 
+                    key={index}
+                    className="text-gray-600"
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <span className="font-semibold">{item.label}:</span> {item.value}
+                  </motion.p>
+                ))}
+              </motion.div>
+            </motion.div>
       </div>
+        </motion.section>
+      </motion.div>
     </div>
-  </>
   )
 }
 
-export default about
+export default AboutPage
